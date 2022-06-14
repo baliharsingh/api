@@ -1,0 +1,744 @@
+{
+	"info": {
+		"_postman_id": "354fe958-af8d-4a3e-af9e-8941e509983b",
+		"name": "Telus MOCN PoC - TMF641 5G slicing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. 1.CreateCSI MOCN CSP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"order_id\", jsonData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"externalId\": \"Telus-TMF641\",\n    \"notificationContact\": \"SHCustomer\",\n    \"description\": \"CSMF_createCSI\",\n    \"category\": \"1.1.100-SNAPSHOT\",\n    \"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"CSMF_createCSI\",\n\t\t\t\"action\": \"add\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"CSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"customer\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"description\": \"A sample customer description\",\n\t\t\t\t\t\t\t\"address\": \"A sample customer address\",\n\t\t\t\t\t\t\t\"name\": \"SHCustomer\",\n\t\t\t\t\t\t\t\"contact\": \"Contact\"\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"areaOfService\",\n\t\t\t\t\t\t\"value\":  [\n                        [\n                            [\n                                [\n                                    80.41098246503708,\n                                    44.57474251342961,\n                                    84648045.65083516\n                                ],\n                                [\n                                    70.5295037555208,\n                                    -12.999758654387364,\n                                    24103980.967542157\n                                ],\n                                [\n                                    131.1832470155298,\n                                    -36.99820139430529,\n                                    29306481.998527527\n                                ],\n                                [\n                                    7.727334756840236,\n                                    81.3177998385234,\n                                    -4233512.440761\n                                ]\n                            ]\n                        ],\n                        [\n                            [\n                                [\n                                    123.52940352934178,\n                                    -58.22758643674125,\n                                    -50237479.398283824\n                                ],\n                                [\n                                    104.34722353935285,\n                                    25.773165978336877,\n                                    -23530344.27915588\n                                ],\n                                [\n                                    124.35910593569582,\n                                    -21.39165650037988,\n                                    -31712857.508380473\n                                ],\n                                [\n                                    -73.44012657013947,\n                                    -59.06718512641518,\n                                    78549684.45440823\n                                ],\n                                [\n                                    113.5971561119145,\n                                    -1.8824766907913641,\n                                    -83065409.80793653\n                                ]\n                            ]\n                        ]\n                    ]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"delayTolerance\",\n\t\t\t\t\t\t\"value\": false\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"sNSSAIList\",\n\t\t\t\t\t\t\"value\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"sst\": 1,\n                                \"sd\": \"44\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"pLMNIdList\",\n\t\t\t\t\t\t\"value\": [\n                        {\n\t\t\t\t\t\t\t\"mcc\": \"302\",\n\t\t\t\t\t\t\t\"mnc\": \"221\"\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maximumNumberOfPDUSessions\",\n\t\t\t\t\t\t\"value\": 100\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"isolationLevel\",\n\t\t\t\t\t\t\"value\": \"NO-ISOLATION\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maxNumberofUEs\",\n\t\t\t\t\t\t\"value\": 500\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. 2.ActivateCSI MOCN CSP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"order_id\", jsonData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"externalId\": \"Telus-TMF641\",\n    \"notificationContact\": \"SHCustomer\",\n    \"description\": \"CSMF_activateCSI\",\n    \"category\": \"1.1.0-SNAPSHOT\",\n    \"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"CSMF_modifyCSI\",\n\t\t\t\"action\": \"modify\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"CSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n                \"id\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1\",\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"administrativeState\",\n\t\t\t\t\t\t\"value\": \"UNLOCKED\"\n\t\t\t\t\t},\n                    \t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"customer\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"description\": \"A sample customer description\",\n\t\t\t\t\t\t\t\"address\": \"768 5th Ave, New York, NY 10019\",\n\t\t\t\t\t\t\t\"name\": \"SHCustomer\",\n\t\t\t\t\t\t\t\"contact\": \"Contact\"\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"areaOfService\",\n\t\t\t\t\t\t\"value\": [\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"delayTolerance\",\n\t\t\t\t\t\t\"value\": false\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 9753023.28,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 25802621.20\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 33310543.92,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 51787067.62474576\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 9753023.28,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 25802621.20\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 9753023.28,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 51787067.62474576\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"sNSSAIList\",\n\t\t\t\t\t\t\"value\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"sst\": 1,\n                                \"sd\": \"44\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"pLMNIdList\",\n\t\t\t\t\t\t\"value\": [{\n\t\t\t\t\t\t\t\"mnc\": \"221\",\n\t\t\t\t\t\t\t\"mcc\": \"302\"\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maximumNumberOfPDUSessions\",\n\t\t\t\t\t\t\"value\": 100\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"isolationLevel\",\n\t\t\t\t\t\t\"value\": \"NO-ISOLATION\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maxNumberofUEs\",\n\t\t\t\t\t\t\"value\": 500\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. 4.DeleteCSI MOCN CSP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"order_id\", jsonData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"CSMF_deleteCSI\",\n\t\t\t\"action\": \"delete\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"CSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n                \"id\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1\"\n\t\t\t}\n\t\t}\n\t],\n    \"externalId\": \"Telus-TMF641\",\n    \"notificationContact\": \"SHCustomer\",\n    \"description\": \"CSMF_deleteCSI\",\n    \"category\": \"1.1.0-SNAPSHOT\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NSMF: CreateNSI MOCN NOP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"order_id\", pm.response.json().id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response Content Test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"order_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"NSMF_createMOI\",\n\t\t\t\"action\": \"add\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"NSMF\",\n\t\t\t\t\t\"version\": \"10.0.0-SNAPSHOT\"\n\t\t\t\t},\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"serviceProfileList\",\n\t\t\t\t\t\t\"value\": {\n                                \"sNSSAIList\": [\n                                {\n                                    \"sst\": 1,\n                                    \"sd\": \"42\"\n                                }\n                            ],\n                            \"pLMNIdList\": [\n                                {\n                                    \"mcc\": \"302\",\n                                    \"mnc\": \"640\"\n                                }\n                            ],\n                            \"delayTolerance\": false,\n                            \"coverageArea\": [\t[\t[\t[\t90.41098246503708,\t44.57474251342961,\t84648045.65083516\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t84.5295037555208,\t-12.999758654387364,\t24103980.967542158\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t131.1832470155298,\t-36.99820139430529,\t\t29306481.998527528\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t7.727334756840236,\t81.3177998385234,\t-4233512.440761\t]\t]\n\t\t\t\t\t\t\t\t\t],[\t[\t[\t123.52940352934178,\t-58.22758643674125,\t-50237479.398283828\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t104.34722353935286,\t25.773165978336878,\t-23530344.27915588\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t124.35910593569582,\t-21.39165650037988,\t-31712857.508380474\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t-73.44012657013947,\t-59.06718512641518,\t78549684.45440823\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t113.5971561119145,\t-1.8824766907913642,\t-83065409.80793654\t]\t]\t]\t],\n                            \"resourceSharingLevel\": \"SHARED\",\n                            \"uLThptPerSlice\": {\n                                \"guaThpt\": 10000000,\n                                \"maxThpt\": 15000000\n                            },\n                            \"dLThptPerSlice\": {\n                                \"guaThpt\": 100000000,\n                                \"maxThpt\": 150000000\n                            },\n                            \"uLThptPerUE\": {\n                                \"guaThpt\": 100000,\n                                \"maxThpt\": 150000\n                            },\n                            \"dLThptPerUE\": {\n                                \"guaThpt\": 1000000,\n                                \"maxThpt\": 1500000\n                            },\n                            \"maxNumberofConns\": 100,\n                            \"maxNumberofUEs\": 500\n                                }\n                            },\n                            {\n                                \"name\": \"context\",\n                                \"value\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1\"\n                            }\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "NSMF: CreateNSI MOCN NOP",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"NSMF_createMOI\",\n\t\t\t\"action\": \"add\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"NSMF\",\n\t\t\t\t\t\"version\": \"10.0.0-SNAPSHOT\"\n\t\t\t\t},\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"serviceProfileList\",\n\t\t\t\t\t\t\"value\": {\n                                \"sNSSAIList\": [\n                                {\n                                    \"sst\": 1,\n                                    \"sd\": \"42\"\n                                }\n                            ],\n                            \"pLMNIdList\": [\n                                {\n                                    \"mcc\": \"302\",\n                                    \"mnc\": \"640\"\n                                }\n                            ],\n                            \"delayTolerance\": false,\n                            \"coverageArea\": [\t[\t[\t[\t90.41098246503708,\t44.57474251342961,\t84648045.65083516\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t84.5295037555208,\t-12.999758654387364,\t24103980.967542158\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t131.1832470155298,\t-36.99820139430529,\t\t29306481.998527528\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t7.727334756840236,\t81.3177998385234,\t-4233512.440761\t]\t]\n\t\t\t\t\t\t\t\t\t],[\t[\t[\t123.52940352934178,\t-58.22758643674125,\t-50237479.398283828\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t104.34722353935286,\t25.773165978336878,\t-23530344.27915588\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t124.35910593569582,\t-21.39165650037988,\t-31712857.508380474\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t-73.44012657013947,\t-59.06718512641518,\t78549684.45440823\t],\n\t\t\t\t\t\t\t\t\t\t\t[\t113.5971561119145,\t-1.8824766907913642,\t-83065409.80793654\t]\t]\t]\t],\n                            \"resourceSharingLevel\": \"SHARED\",\n                            \"uLThptPerSlice\": {\n                                \"guaThpt\": 10000000,\n                                \"maxThpt\": 15000000\n                            },\n                            \"dLThptPerSlice\": {\n                                \"guaThpt\": 100000000,\n                                \"maxThpt\": 150000000\n                            },\n                            \"uLThptPerUE\": {\n                                \"guaThpt\": 100000,\n                                \"maxThpt\": 150000\n                            },\n                            \"dLThptPerUE\": {\n                                \"guaThpt\": 1000000,\n                                \"maxThpt\": 1500000\n                            },\n                            \"maxNumberofConns\": 100,\n                            \"maxNumberofUEs\": 500\n                                }\n                            },\n                            {\n                                \"name\": \"context\",\n                                \"value\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1\"\n                            }\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+							"protocol": "https",
+							"host": [
+								"{{csfp_url}}"
+							],
+							"path": [
+								"apigw",
+								"{{norc_ns}}",
+								"tmf-api",
+								"serviceOrdering",
+								"v4",
+								"serviceOrder"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 18 Jan 2022 09:47:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Location",
+							"value": "/tmf-api/serviceOrdering/v4/serviceOrder/d6328b16-caee-4340-8705-1775935cb590"
+						},
+						{
+							"key": "X-Kong-Upstream-Latency",
+							"value": "31"
+						},
+						{
+							"key": "X-Kong-Proxy-Latency",
+							"value": "48"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"d6328b16-caee-4340-8705-1775935cb590\",\n    \"orderDate\": \"2022-01-18T09:47:07.603Z\",\n    \"state\": \"acknowledged\",\n    \"serviceOrderItem\": [\n        {\n            \"id\": \"NSMF_createMOI\",\n            \"action\": \"add\",\n            \"state\": \"acknowledged\",\n            \"service\": {\n                \"serviceCharacteristic\": [\n                    {\n                        \"name\": \"serviceProfileList\",\n                        \"value\": {\n                            \"sNSSAIList\": [\n                                {\n                                    \"sst\": 1,\n                                    \"sd\": \"42\"\n                                }\n                            ],\n                            \"pLMNIdList\": [\n                                {\n                                    \"mcc\": \"302\",\n                                    \"mnc\": \"640\"\n                                }\n                            ],\n                            \"delayTolerance\": false,\n                            \"coverageArea\": [\n                                [\n                                    [\n                                        [\n                                            90.41098246503708,\n                                            44.57474251342961,\n                                            84648045.65083516\n                                        ],\n                                        [\n                                            84.5295037555208,\n                                            -12.999758654387364,\n                                            24103980.967542157\n                                        ],\n                                        [\n                                            131.1832470155298,\n                                            -36.99820139430529,\n                                            29306481.998527527\n                                        ],\n                                        [\n                                            7.727334756840236,\n                                            81.3177998385234,\n                                            -4233512.440761\n                                        ]\n                                    ]\n                                ],\n                                [\n                                    [\n                                        [\n                                            123.52940352934178,\n                                            -58.22758643674125,\n                                            -50237479.398283824\n                                        ],\n                                        [\n                                            104.34722353935285,\n                                            25.773165978336877,\n                                            -23530344.27915588\n                                        ],\n                                        [\n                                            124.35910593569582,\n                                            -21.39165650037988,\n                                            -31712857.508380473\n                                        ],\n                                        [\n                                            -73.44012657013947,\n                                            -59.06718512641518,\n                                            78549684.45440823\n                                        ],\n                                        [\n                                            113.5971561119145,\n                                            -1.8824766907913641,\n                                            -83065409.80793653\n                                        ]\n                                    ]\n                                ]\n                            ],\n                            \"resourceSharingLevel\": \"SHARED\",\n                            \"uLThptPerSlice\": {\n                                \"guaThpt\": 10000000,\n                                \"maxThpt\": 15000000\n                            },\n                            \"dLThptPerSlice\": {\n                                \"guaThpt\": 100000000,\n                                \"maxThpt\": 150000000\n                            },\n                            \"uLThptPerUE\": {\n                                \"guaThpt\": 100000,\n                                \"maxThpt\": 150000\n                            },\n                            \"dLThptPerUE\": {\n                                \"guaThpt\": 1000000,\n                                \"maxThpt\": 1500000\n                            },\n                            \"maxNumberofConns\": 100,\n                            \"maxNumberofUEs\": 500\n                        }\n                    },\n                    {\n                        \"name\": \"context\",\n                        \"value\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1\"\n                    }\n                ],\n                \"serviceSpecification\": {\n                    \"id\": \"1\",\n                    \"name\": \"NSMF\",\n                    \"version\": \"10.0.0-SNAPSHOT\"\n                }\n            }\n        }\n    ],\n    \"href\": \"/tmf-api/serviceOrdering/v4/serviceOrder/d6328b16-caee-4340-8705-1775935cb590\"\n}"
+				}
+			]
+		},
+		{
+			"name": "NSMF: ActivateNSI MOCN NOP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"order_id\", pm.response.json().id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response Content Test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"order_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"NSMF_modifyMOIAttributes\",\n\t\t\t\"action\": \"modify\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"NSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n                \"id\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1,NSService=NSIService1\",\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"administrativeState\",\n\t\t\t\t\t\t\"value\": \"UNLOCKED\"\n\t\t\t\t\t},\n                    \t{\n\t\t\t\t\t\t\"name\": \"serviceProfileList\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\"sNSSAIList\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"sst\": 1,\n\t\t\t\t\t\t\t\"sd\": \"42\"\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t\t\"pLMNIdList\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"mcc\": \"302\",\n\t\t\t\t\t\t\t\"mnc\": \"640\"\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t\t\"delayTolerance\": false,\n                    \"coverageArea\": [],\n\t\t\t\t\t\"resourceSharingLevel\": \"SHARED\",\n\t\t\t\t\t\"uLThptPerSlice\": {\n\t\t\t\t\t\t\"guaThpt\": 10000000,\n\t\t\t\t\t\t\"maxThpt\": 15000000\n\t\t\t\t\t},\n\t\t\t\t\t\"dLThptPerSlice\": {\n\t\t\t\t\t\t\"guaThpt\": 100000000,\n\t\t\t\t\t\t\"maxThpt\": 150000000\n\t\t\t\t\t},\n\t\t\t\t\t\"uLThptPerUE\": {\n\t\t\t\t\t\t\"guaThpt\": 100000,\n\t\t\t\t\t\t\"maxThpt\": 150000\n\t\t\t\t\t},\n\t\t\t\t\t\"dLThptPerUE\": {\n\t\t\t\t\t\t\"guaThpt\": 1000000,\n\t\t\t\t\t\t\"maxThpt\": 1500000\n\t\t\t\t\t},\n\t\t\t\t\t\"maxNumberofConns\": 100,\n\t\t\t\t\t\"maxNumberofUEs\": 500\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NSMF: DeactivateNSI MOCN NOP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"order_id\", pm.response.json().id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response Content Test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"order_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"NSMF_modifyMOIAttributes\",\n\t\t\t\"action\": \"modify\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"NSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n                \"id\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1,NSService=NSIService1\",\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"administrativeState\",\n\t\t\t\t\t\t\"value\": \"LOCKED\"\n\t\t\t\t\t},\n                    \t{\n\t\t\t\t\t\t\"name\": \"serviceProfileList\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\"sNSSAIList\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"sst\": 1,\n\t\t\t\t\t\t\t\"sd\": \"42\"\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t\t\"pLMNIdList\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"mcc\": \"302\",\n\t\t\t\t\t\t\t\"mnc\": \"640\"\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t\t\"delayTolerance\": false,\n                    \"coverageArea\": [],\n\t\t\t\t\t\"resourceSharingLevel\": \"SHARED\",\n\t\t\t\t\t\"uLThptPerSlice\": {\n\t\t\t\t\t\t\"guaThpt\": 10000000,\n\t\t\t\t\t\t\"maxThpt\": 15000000\n\t\t\t\t\t},\n\t\t\t\t\t\"dLThptPerSlice\": {\n\t\t\t\t\t\t\"guaThpt\": 100000000,\n\t\t\t\t\t\t\"maxThpt\": 150000000\n\t\t\t\t\t},\n\t\t\t\t\t\"uLThptPerUE\": {\n\t\t\t\t\t\t\"guaThpt\": 100000,\n\t\t\t\t\t\t\"maxThpt\": 150000\n\t\t\t\t\t},\n\t\t\t\t\t\"dLThptPerUE\": {\n\t\t\t\t\t\t\"guaThpt\": 1000000,\n\t\t\t\t\t\t\"maxThpt\": 1500000\n\t\t\t\t\t},\n\t\t\t\t\t\"maxNumberofConns\": 100,\n\t\t\t\t\t\"maxNumberofUEs\": 500\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NSMF: DeleteNSI MOCN NOP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"order_id\", pm.response.json().id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response Content Test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.not.eql(null);",
+							"});",
+							"pm.environment.set(\"order_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"NSMF_deleteMOI\",\n\t\t\t\"action\": \"delete\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"NSMF\",\n\t\t\t\t\t\"version\": \"10.0.0-SNAPSHOT\"\n\t\t\t\t},\n\t\t\t\t\"id\": \"host,CSCustomer=SHCustomer,eMBB=CSIService1,NSService=NSIService1\"\n\t\t\t}\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate with keycloak",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('access_token', data.access_token);",
+							"postman.setEnvironmentVariable('refresh_token', data.refresh_token);",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Admin10!",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{norc_ns}}.ui.orderhub",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "doc-norc.admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{kc_url}}/auth/realms/{{realm_name}}/protocol/openid-connect/token",
+					"protocol": "https",
+					"host": [
+						"{{kc_url}}"
+					],
+					"path": [
+						"auth",
+						"realms",
+						"{{realm_name}}",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				},
+				"description": "Authenticates against CBND in order to retrieve the access_token for subsequent API calls."
+			},
+			"response": [
+				{
+					"name": "authentication_response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "The mime type of this content"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cbnfvoadmin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Admin@123",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "cbnd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{_server}}:9080/auth/realms/CloudBandNetworkDirector/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"{{_server}}"
+							],
+							"port": "9080",
+							"path": [
+								"auth",
+								"realms",
+								"CloudBandNetworkDirector",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 May 2017 12:44:07 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "nginx",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						}
+					],
+					"cookie": [],
+					"body": "{\"access_token\":\"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxZWIzYWY0Yy0xMmU0LTQ3NTktYWU1Yy02MGUxZDQ2MmE4NWQiLCJleHAiOjE0OTYxNjI2NDcsIm5iZiI6MCwiaWF0IjoxNDk2MTQ4MjQ3LCJpc3MiOiJodHRwOi8vMTAuMTY4LjU4LjEwOTo5MDgwL2F1dGgvcmVhbG1zL0Nsb3VkQmFuZE5ldHdvcmtEaXJlY3RvciIsImF1ZCI6ImNibmQiLCJzdWIiOiJlMjViZWQyYy05MDRiLTQyZDUtODVkNi00NDAxN2M0MmM4NDEiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjYm5kIiwic2Vzc2lvbl9zdGF0ZSI6Ijk5NzUzYTFiLTc5NjUtNDE5OC05NmRhLTk4ZTExOWFlNWUzNCIsImNsaWVudF9zZXNzaW9uIjoiNzMwOGE1MTItNzM3Yi00ODdjLWE1NGUtYjdjMGQwYzM4M2ZiIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly8xMC4xNjguNTguMTA5OjkwODAiLCJodHRwOi8vMTAuMTY4LjU4LjEwOTo4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiVmlldyBOUyBQb2xpY3kiLCJNb2RpZnkgQ0JORCBSb2xlIiwiVmlldyBOUyBSZXBvcnRzIiwiQ3JlYXRlIFJlc291cmNlIiwiVmlldyBOUyBLUElzIiwiUmVhZCBFdmVudCBMb2ciLCJBZGQgU3lzdGVtIFBvbGljeSIsIlJldm9rZSBTeXN0ZW0gUG9saWN5IiwiQWRkIFRlbmFudCIsIkdlbmVyYXRlIFZJTSBSZXBvcnRzIiwiVXBkYXRlIE5TRCBDYXRhbG9nIiwiU2NoZWR1bGUgTlMgUmVwb3J0cyIsIkNCTkQgQWRtaW5pc3RyYXRvciBIaWdoIFByaXZpbGVnZSIsIlNlcnZpY2UgTW9uaXRvciIsIlNjaGVkdWxlIE5ldHdvcmsgUmVwb3J0cyIsIkRlbGV0ZSBUZW5hbnQiLCJWaWV3IE5TIERldGFpbHMiLCJWaWV3IFZORk0gUmVzb3VyY2UgTGlzdCIsIkRlbGV0ZSBSZXNvdXJjZSIsIlZpZXcgVk5GTSBSZXNvdXJjZSBLUEkiLCJWaWV3IE5ldHdvcmsgUmVwb3J0cyIsIlNjaGVkdWxlIFZJTSBSZXBvcnRzIiwiTm90aWZ5IFJlc291cmNlLUFkbWluaXN0cmF0b3IiLCJBZGQgTlMgUG9saWN5IiwiVmlldyBOZXR3b3JrIFJlc291cmNlIExpc3QiLCJEZWxldGUgTmV0d29yayBSZXNvdXJjZSIsIkRlbGV0ZSBWTkYgUmVwb3J0cyIsIlJlc291cmNlIEFkbWluaXN0cmF0b3IiLCJDcmVhdGUgQ0JORCBSb2xlIiwiVmlldyBVc2VyIiwiRGVsZXRlIE5TIiwiVmlldyBWTkZNIFJlcG9ydHMiLCJUZXJtaW5hdGUgTlMiLCJWaWV3IFZJTSBSZXBvcnRzIiwiVmlldyBDYXRhbG9nIERldGFpbCIsIlZpZXcgUmVzb3VyY2UiLCJWaWV3IFZORk0gUmVzb3VyY2UgRGV0YWlsIiwiVmlldyBSZXNvdXJjZSAtIEhpZ2ggUHJpdmlsZWdlIiwiU2NoZWR1bGUgVk5GTSBSZXBvcnRzIiwiVmlldyBOZXR3b3JrIFJlc291cmNlIiwiVmlldyBWSU0gUmVzb3VyY2UgU3RhdHVzIiwiTW9kaWZ5IE5TIFBvbGljeSIsIlZORiBQbGFjZW1lbnQiLCJTZXJ2aWNlIERlcGxveWVyIiwiVmlldyBSb2xlIiwiVmlldyBWTkYgU3RhdHVzIiwiRGVsZXRlIE5ldHdvcmsgUmVwb3J0cyIsIlZpZXcgQWxhcm1zIiwiQ3JlYXRlIE5ldHdvcmsgUmVzb3VyY2UiLCJTY2hlZHVsZSBWTkYgUmVwb3J0cyIsIlJlc291cmNlIE1vbml0b3IiLCJDcmVhdGUgRXZlbnQgTG9nIiwiRGVsZXRlIE5TIFBvbGljeSIsIkNyZWF0ZSBVc2VyIiwiRGVsZXRlIE5TIFJlcG9ydHMiLCJVcGxvYWQgTlNEIENhdGFsb2ciLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgRGV0YWlsIiwiRGVwbG95IE5TIiwiR2VuZXJhdGUgTlMgUmVwb3J0cyIsIkNyZWF0ZSBOUyIsIkFja25vd2xlZGdlIEFsYXJtcyIsIlZpZXcgTlMgUmVwb3J0IiwiQ2xlYXIgQWxhcm1zIiwiVmlldyBWTkZNIFJlc291cmNlIFN0YXR1cyIsIkRlbGV0ZSBWSU0gUmVwb3J0cyIsIkRlbGV0ZSBDQk5EIFJvbGUiLCJBc3NpZ24gQ0JORCBSb2xlIHRvIHVzZXIiLCJUcmlnZ2VyIE5vdGlmaWNhdGlvbiB0byBTZXJ2aWNlIERlcGxveWVyIiwiVmlldyBOUyBMaXN0IiwiVmlldyBUZW5hbnQgTGlzdCIsIkNyZWF0ZSBHcm91cCIsIlRlbXBsYXRlIE1hbmFnZXIiLCJHZW5lcmF0ZSBOZXR3b3JrIFJlcG9ydHMiLCJEZWxldGUgR3JvdXAiLCJWaWV3IFNETiBSZXBvcnRzIiwiRGVsZXRlIE5TRCBmcm9tIENhdGFsb2ciLCJNb2RpZnkgU3lzdGVtIFBvbGljeSIsIk1vZGlmeSBVc2VyIiwiVmlldyBOUyBTdGF0dXMiLCJWaWV3IFN5c3RlbSBQb2xpY3kiLCJUcmlnZ2VyIE5vdGlmaWNhdGlvbiB0byBDQk5EIEFkbWluaXN0cmF0b3IiLCJWaWV3IENhdGFsb2cgTGlzdCIsIk1vZGlmeSBHcm91cCIsIk1vZGlmeSBOZXR3b3JrIFJlc291cmNlIiwiVmlldyBWSU0gUmVzb3VyY2UgS1BJIiwiRGVsZXRlIFVzZXIiLCJWaWV3IFZORiBSZXBvcnRzIiwiR2VuZXJhdGUgVk5GIFJlcG9ydHMiLCJVcGRhdGUgTlMiLCJHZW5lcmF0ZSBWTkZNIFJlcG9ydHMiLCJWaWV3IEdyb3VwIiwiQ0JORCBBZG1pbmlzdHJhdG9yIiwiTW9kaWZ5IFRlbmFudCIsIlZpZXcgTmV0d29yayBSZXNvdXJjZSBTdGF0dXMiLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgS1BJIiwiRGVsZXRlIFZORk0gUmVwb3J0cyIsIk1vZGlmeSBSZXNvdXJjZSJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InJlYWxtLW1hbmFnZW1lbnQiOnsicm9sZXMiOlsibWFuYWdlLWNsaWVudHMiLCJtYW5hZ2UtZXZlbnRzIiwidmlldy1yZWFsbSIsInZpZXctZXZlbnRzIiwibWFuYWdlLWlkZW50aXR5LXByb3ZpZGVycyIsImNyZWF0ZS1jbGllbnQiLCJtYW5hZ2UtcmVhbG0iLCJ2aWV3LWlkZW50aXR5LXByb3ZpZGVycyIsInZpZXctdXNlcnMiLCJyZWFsbS1hZG1pbiIsInZpZXctY2xpZW50cyIsImltcGVyc29uYXRpb24iLCJtYW5hZ2UtdXNlcnMiXX19LCJuYW1lIjoiIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2JuZnZvYWRtaW4ifQ.oIKI2CVJBcJLMk_PedWb-qy8l0Cp2BR4DB6UEMkrzEkYXxhvuYPoedMlQlpyQiMMhSpsePD4G0g9a13QN7LnJ4SEoEe_EG_BOtGb4dXQtXAo3qH94iK0YtyMcvx19d_tvtRsTQDiqvMx9KXHxAebhlHzIVdPCEwATWe0WjhZFLU\",\"expires_in\":14400,\"refresh_expires_in\":16200,\"refresh_token\":\"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIxZDY2NzVjOC02NjMyLTQ3MWUtODdiNi1lZGZhYzBiZTk0YTgiLCJleHAiOjE0OTYxNjQ0NDcsIm5iZiI6MCwiaWF0IjoxNDk2MTQ4MjQ3LCJpc3MiOiJodHRwOi8vMTAuMTY4LjU4LjEwOTo5MDgwL2F1dGgvcmVhbG1zL0Nsb3VkQmFuZE5ldHdvcmtEaXJlY3RvciIsImF1ZCI6bnVsbCwic3ViIjoiZTI1YmVkMmMtOTA0Yi00MmQ1LTg1ZDYtNDQwMTdjNDJjODQxIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImNibmQiLCJzZXNzaW9uX3N0YXRlIjoiOTk3NTNhMWItNzk2NS00MTk4LTk2ZGEtOThlMTE5YWU1ZTM0IiwiY2xpZW50X3Nlc3Npb24iOiI3MzA4YTUxMi03MzdiLTQ4N2MtYTU0ZS1iN2MwZDBjMzgzZmIiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiTW9kaWZ5IENCTkQgUm9sZSIsIkNyZWF0ZSBSZXNvdXJjZSIsIlZpZXcgTlMgS1BJcyIsIlJldm9rZSBTeXN0ZW0gUG9saWN5IiwiQWRkIFRlbmFudCIsIlNjaGVkdWxlIE5TIFJlcG9ydHMiLCJDQk5EIEFkbWluaXN0cmF0b3IgSGlnaCBQcml2aWxlZ2UiLCJTZXJ2aWNlIE1vbml0b3IiLCJWaWV3IE5TIERldGFpbHMiLCJWaWV3IFZORk0gUmVzb3VyY2UgTGlzdCIsIlZpZXcgTmV0d29yayBSZXBvcnRzIiwiU2NoZWR1bGUgVklNIFJlcG9ydHMiLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgTGlzdCIsIkRlbGV0ZSBWTkYgUmVwb3J0cyIsIlZpZXcgVXNlciIsIkNyZWF0ZSBDQk5EIFJvbGUiLCJEZWxldGUgTlMiLCJWaWV3IFZORk0gUmVwb3J0cyIsIlZpZXcgUmVzb3VyY2UiLCJTY2hlZHVsZSBWTkZNIFJlcG9ydHMiLCJTZXJ2aWNlIERlcGxveWVyIiwiVk5GIFBsYWNlbWVudCIsIkRlbGV0ZSBOUyBSZXBvcnRzIiwiVXBsb2FkIE5TRCBDYXRhbG9nIiwiR2VuZXJhdGUgTlMgUmVwb3J0cyIsIkNyZWF0ZSBOUyIsIlZpZXcgTlMgUmVwb3J0IiwiVmlldyBWTkZNIFJlc291cmNlIFN0YXR1cyIsIkRlbGV0ZSBWSU0gUmVwb3J0cyIsIkRlbGV0ZSBDQk5EIFJvbGUiLCJUcmlnZ2VyIE5vdGlmaWNhdGlvbiB0byBTZXJ2aWNlIERlcGxveWVyIiwiVmlldyBUZW5hbnQgTGlzdCIsIlRlbXBsYXRlIE1hbmFnZXIiLCJHZW5lcmF0ZSBOZXR3b3JrIFJlcG9ydHMiLCJEZWxldGUgTlNEIGZyb20gQ2F0YWxvZyIsIlZpZXcgU3lzdGVtIFBvbGljeSIsIk1vZGlmeSBHcm91cCIsIlZpZXcgVklNIFJlc291cmNlIEtQSSIsIkdlbmVyYXRlIFZORiBSZXBvcnRzIiwiVXBkYXRlIE5TIiwiR2VuZXJhdGUgVk5GTSBSZXBvcnRzIiwiVmlldyBHcm91cCIsIk1vZGlmeSBUZW5hbnQiLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgS1BJIiwiTW9kaWZ5IFJlc291cmNlIiwiVmlldyBOUyBQb2xpY3kiLCJWaWV3IE5TIFJlcG9ydHMiLCJSZWFkIEV2ZW50IExvZyIsIkFkZCBTeXN0ZW0gUG9saWN5IiwiR2VuZXJhdGUgVklNIFJlcG9ydHMiLCJVcGRhdGUgTlNEIENhdGFsb2ciLCJTY2hlZHVsZSBOZXR3b3JrIFJlcG9ydHMiLCJEZWxldGUgVGVuYW50IiwiRGVsZXRlIFJlc291cmNlIiwiVmlldyBWTkZNIFJlc291cmNlIEtQSSIsIk5vdGlmeSBSZXNvdXJjZS1BZG1pbmlzdHJhdG9yIiwiQWRkIE5TIFBvbGljeSIsIkRlbGV0ZSBOZXR3b3JrIFJlc291cmNlIiwiUmVzb3VyY2UgQWRtaW5pc3RyYXRvciIsIlRlcm1pbmF0ZSBOUyIsIlZpZXcgQ2F0YWxvZyBEZXRhaWwiLCJWaWV3IFZJTSBSZXBvcnRzIiwiVmlldyBSZXNvdXJjZSAtIEhpZ2ggUHJpdmlsZWdlIiwiVmlldyBWTkZNIFJlc291cmNlIERldGFpbCIsIlZpZXcgTmV0d29yayBSZXNvdXJjZSIsIlZpZXcgVklNIFJlc291cmNlIFN0YXR1cyIsIk1vZGlmeSBOUyBQb2xpY3kiLCJWaWV3IFJvbGUiLCJWaWV3IFZORiBTdGF0dXMiLCJEZWxldGUgTmV0d29yayBSZXBvcnRzIiwiVmlldyBBbGFybXMiLCJDcmVhdGUgTmV0d29yayBSZXNvdXJjZSIsIlNjaGVkdWxlIFZORiBSZXBvcnRzIiwiUmVzb3VyY2UgTW9uaXRvciIsIkNyZWF0ZSBFdmVudCBMb2ciLCJEZWxldGUgTlMgUG9saWN5IiwiQ3JlYXRlIFVzZXIiLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgRGV0YWlsIiwiRGVwbG95IE5TIiwiQWNrbm93bGVkZ2UgQWxhcm1zIiwiQ2xlYXIgQWxhcm1zIiwiQXNzaWduIENCTkQgUm9sZSB0byB1c2VyIiwiVmlldyBOUyBMaXN0IiwiQ3JlYXRlIEdyb3VwIiwiRGVsZXRlIEdyb3VwIiwiVmlldyBTRE4gUmVwb3J0cyIsIk1vZGlmeSBTeXN0ZW0gUG9saWN5IiwiTW9kaWZ5IFVzZXIiLCJWaWV3IE5TIFN0YXR1cyIsIlRyaWdnZXIgTm90aWZpY2F0aW9uIHRvIENCTkQgQWRtaW5pc3RyYXRvciIsIlZpZXcgQ2F0YWxvZyBMaXN0IiwiTW9kaWZ5IE5ldHdvcmsgUmVzb3VyY2UiLCJEZWxldGUgVXNlciIsIlZpZXcgVk5GIFJlcG9ydHMiLCJDQk5EIEFkbWluaXN0cmF0b3IiLCJWaWV3IE5ldHdvcmsgUmVzb3VyY2UgU3RhdHVzIiwiRGVsZXRlIFZORk0gUmVwb3J0cyJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InJlYWxtLW1hbmFnZW1lbnQiOnsicm9sZXMiOlsibWFuYWdlLWNsaWVudHMiLCJtYW5hZ2UtZXZlbnRzIiwidmlldy1yZWFsbSIsInZpZXctZXZlbnRzIiwibWFuYWdlLWlkZW50aXR5LXByb3ZpZGVycyIsImNyZWF0ZS1jbGllbnQiLCJtYW5hZ2UtcmVhbG0iLCJ2aWV3LWlkZW50aXR5LXByb3ZpZGVycyIsInZpZXctdXNlcnMiLCJyZWFsbS1hZG1pbiIsInZpZXctY2xpZW50cyIsImltcGVyc29uYXRpb24iLCJtYW5hZ2UtdXNlcnMiXX19fQ.DPbKaWvsakq9nZ5n4nE1NhMvnfb9FGRbSPj1h996bH6CdiZP6kYG6rY_Ty7Y7JBe0vgqR0jh2PmViqerQTJdM7JpKWcsftgD2-7M2bNWA6Q0cvceaoVvaU2V1km-J9GYoAf82K1nJonLl6TzBxhrmchweu9wKV1UUBw04C2QhPE\",\"token_type\":\"bearer\",\"id_token\":\"eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJkZTczZmI2My04MzZhLTQxODktYjZmYi05ZjlkMmJjNTA3MmEiLCJleHAiOjE0OTYxNjI2NDcsIm5iZiI6MCwiaWF0IjoxNDk2MTQ4MjQ3LCJpc3MiOiJodHRwOi8vMTAuMTY4LjU4LjEwOTo5MDgwL2F1dGgvcmVhbG1zL0Nsb3VkQmFuZE5ldHdvcmtEaXJlY3RvciIsImF1ZCI6ImNibmQiLCJzdWIiOiJlMjViZWQyYy05MDRiLTQyZDUtODVkNi00NDAxN2M0MmM4NDEiLCJ0eXAiOiJJRCIsImF6cCI6ImNibmQiLCJzZXNzaW9uX3N0YXRlIjoiOTk3NTNhMWItNzk2NS00MTk4LTk2ZGEtOThlMTE5YWU1ZTM0IiwibmFtZSI6IiIsInByZWZlcnJlZF91c2VybmFtZSI6ImNibmZ2b2FkbWluIn0.Z5pLoCEsosZ9PhQGfLR-fleWyyMb4zoaLUnGHDRJygvEHqn7TLwUbXXayl9Kh6FPS5L6sXgEIskf3dujYxeBe_fhETwcWPQ8Lo_IwgPyB63_Li4n1k5rQGZ6g1Zd2xoF-SMFacfcZnW1a_x90s16ckNV4hl2RmJjmUx13Gp9ks4\",\"not-before-policy\":0,\"session-state\":\"99753a1b-7965-4198-96da-98e119ae5e34\"}"
+				}
+			]
+		},
+		{
+			"name": "1. 1.CreateCSI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"order_id\", jsonData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceOrderItem\": [\n\t\t{\n\t\t\t\"id\": \"CSMF_createCSI\",\n\t\t\t\"action\": \"add\",\n\t\t\t\"service\": {\n\t\t\t\t\"serviceSpecification\": {\n\t\t\t\t\t\"id\": \"1\",\n\t\t\t\t\t\"name\": \"CSMF\",\n\t\t\t\t\t\"version\": \"1.1.0-SNAPSHOT\"\n\t\t\t\t},\n\t\t\t\t\"serviceCharacteristic\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"customer\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"description\": \"A sample customer description\",\n\t\t\t\t\t\t\t\"address\": \"A sample customer address\",\n\t\t\t\t\t\t\t\"name\": \"SHCustomer\",\n\t\t\t\t\t\t\t\"contact\": \"Contact\"\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"areaOfService\",\n\t\t\t\t\t\t\"value\":  [\n                        [\n                            [\n                                [\n                                    90.41098246503708,\n                                    44.57474251342961,\n                                    84648045.65083516\n                                ],\n                                [\n                                    84.5295037555208,\n                                    -12.999758654387364,\n                                    24103980.967542157\n                                ],\n                                [\n                                    131.1832470155298,\n                                    -36.99820139430529,\n                                    29306481.998527527\n                                ],\n                                [\n                                    7.727334756840236,\n                                    81.3177998385234,\n                                    -4233512.440761\n                                ]\n                            ]\n                        ],\n                        [\n                            [\n                                [\n                                    123.52940352934178,\n                                    -58.22758643674125,\n                                    -50237479.398283824\n                                ],\n                                [\n                                    104.34722353935285,\n                                    25.773165978336877,\n                                    -23530344.27915588\n                                ],\n                                [\n                                    124.35910593569582,\n                                    -21.39165650037988,\n                                    -31712857.508380473\n                                ],\n                                [\n                                    -73.44012657013947,\n                                    -59.06718512641518,\n                                    78549684.45440823\n                                ],\n                                [\n                                    113.5971561119145,\n                                    -1.8824766907913641,\n                                    -83065409.80793653\n                                ]\n                            ]\n                        ]\n                    ]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"delayTolerance\",\n\t\t\t\t\t\t\"value\": false\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerNetworkSlice\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"uplinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumUplinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedUplinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"downlinkThroughputPerUE\",\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"maximumDownlinkThroughput\": 1000000000,\n\t\t\t\t\t\t\t\"guaranteedDownlinkThroughput\": 1000000000\n\t\t\t\t\t\t}\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"sNSSAIList\",\n\t\t\t\t\t\t\"value\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"sst\": 1,\n                                \"sd\": \"44\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"pLMNIdList\",\n\t\t\t\t\t\t\"value\": [\n                        {\n\t\t\t\t\t\t\t\"mcc\": \"302\",\n\t\t\t\t\t\t\t\"mnc\": \"640\"\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maximumNumberOfPDUSessions\",\n\t\t\t\t\t\t\"value\": 100\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"isolationLevel\",\n\t\t\t\t\t\t\"value\": \"NO-ISOLATION\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"maxNumberofUEs\",\n\t\t\t\t\t\t\"value\": 500\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t}\n\t],\n    \"externalId\": \"{{user}}-TMF641\",\n    \"notificationContact\": \"SHCustomer\",\n    \"description\": \"CSMF_createCSI\",\n    \"category\": \"1.1.100-SNAPSHOT\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{csfp_url}}/apigw/{{norc_ns}}/tmf-api/serviceOrdering/v4/serviceOrder",
+					"protocol": "https",
+					"host": [
+						"{{csfp_url}}"
+					],
+					"path": [
+						"apigw",
+						"{{norc_ns}}",
+						"tmf-api",
+						"serviceOrdering",
+						"v4",
+						"serviceOrder"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
